@@ -1,5 +1,8 @@
 # RecipesApp
 
+##About
+I'm taking Max Schwarzmueller's course on Angular 6, even though I've been using Angular 5 and 6 in production.  It wouldn't hurt to see what other devs are doing with the framework.  I'm a little bit more precise and explicit in my naming conventions than Max though, and I will be adding some stuff that wasn't in the course.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
