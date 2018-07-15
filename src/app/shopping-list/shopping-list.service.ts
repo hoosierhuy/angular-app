@@ -14,13 +14,22 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
-  addIngredient(ingredient: IngredientModel) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+  addIngredient(ingredient: IngredientModel, publishChanges = true) {
+    const index = this.ingredients.findIndex(ingrd => ingrd.name === ingredient.name);
+
+    if (index === -1) {
+      this.ingredients.push(ingredient);
+    } else {
+      this.ingredients[index].amount += ingredient.amount;
+    }
+
+    if (publishChanges) {
+      this.ingredientsChanged.emit(this.ingredients.slice());
+    }
   }
 
   addIngredients(ingredients: IngredientModel[]) {
-    this.ingredients.push(...ingredients);
+    ingredients.forEach(ingredient => this.addIngredient(ingredient, false));
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 }
