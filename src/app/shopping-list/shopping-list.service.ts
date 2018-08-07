@@ -7,7 +7,7 @@ export class ShoppingListService {
 
   private ingredients: IngredientModel[] = [
     new IngredientModel('Bacon', 69),
-    new IngredientModel('Tomatoes', 12)
+    new IngredientModel('Beef Rounds', 12)
   ];
 
   getIngredients() {

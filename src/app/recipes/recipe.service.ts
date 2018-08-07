@@ -9,22 +9,27 @@ export class RecipeService {
   recipeSelected = new EventEmitter<RecipeModel>();
 
   private recipes: RecipeModel[] = [
-    new RecipeModel('Sirloin Steak', 'Cheap lean steak',
-      'http://damakpidekebap.com/media/cache/2c/17/2c17e87e34dbdc1766161f45611464f5.jpg',
+    new RecipeModel('Carne Asada', 'Marinated flank steak',
+      'https://wonkywonderful.com/wp-content/uploads/2017/06/carne-asada-recipe-4.jpg',
       [
-        new IngredientModel('sirloin steak', 1),
-        new IngredientModel('olive oil', 1)
+        new IngredientModel('flank steak', 1),
+        new IngredientModel('lard', 1),
+        new IngredientModel('lime juice', 4)
       ]),
-    new RecipeModel('Vietnamese eggroll', 'Vietnamese eggroll recipe',
-      'https://static1.squarespace.com/static/52d3fafee4b03c7eaedee15f/t/53de9f39e4b0467b3086c913/1407098690717/Vietnamese+egg+rolls?format=750w',
+    new RecipeModel('Bone Broth', 'Beef bone broth',
+      'https://thehealthyfoodie.com/wp-content/uploads/2016/10/Slow-Cooker-Bone-Broth.jpg',
       [
-        new IngredientModel('pork', 1),
-        new IngredientModel('cabbage', 1)
+        new IngredientModel('beef bones', 1),
+        new IngredientModel('onion', 1)
       ])
   ];
 
   // Injecting the ShoppingList service into this service so I can call a method from it.
   constructor(private shoppingListService: ShoppingListService) {}
+
+  getRecipe(index: number) {
+    return this.recipes[index];
+  }
 
   getRecipes() {
     return this.recipes.slice();
