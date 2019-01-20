@@ -1,0 +1,12 @@
+button {
+  margin-right: 0.5rem;
+}
+
+.form-array {
+  margin-top: .75rem;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
