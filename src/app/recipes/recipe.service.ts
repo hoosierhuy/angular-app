@@ -28,6 +28,11 @@ export class RecipeService {
   // Injecting the ShoppingList service into this service so I can call a method from it.
   constructor(private shoppingListService: ShoppingListService) {}
 
+  setRecipes(recipes: RecipeModel[]) {
+    this.recipes = recipes;
+    this.recipesChanged$.next(this.recipes.slice());
+  }
+
   getRecipe(index: number) {
     return this.recipes[index];
   }
