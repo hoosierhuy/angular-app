@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+
+import { secrets } from '../../secrets';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { RecipeModel } from '../recipes/recipe.model';
@@ -9,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class DataStorageService {
-  apiUrl = 'blah blah, get your own';
+  apiUrl = secrets.apiEndpoint;
 
   constructor(
     private http: HttpClient,

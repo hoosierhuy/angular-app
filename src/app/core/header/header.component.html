@@ -15,7 +15,7 @@
             <li><a routerLink="/signin">Log In</a></li>
         </ng-template>
         <li *ngIf="authService.isAuthenticated()"><a (click)="onLogout()">Log Out</a></li>
-        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+        <li class="dropdown" appDropdown *ngIf="isAuthenticated()">
           <a class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a (click)="onSaveData()">Save Data</a></li>

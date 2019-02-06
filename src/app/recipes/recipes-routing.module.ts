@@ -8,7 +8,7 @@ import { AuthGuard } from '../auth/auth-guard.service';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 const recipesRoutes: Routes = [
-  { path: 'recipes', component: RecipesComponent, children: [
+  { path: '', component: RecipesComponent, children: [
       { path: '', component: RecipeStartComponent },
       { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] }, // The odering of these child routes is critical.
       { path: ':id', component: RecipeDetailComponent },
@@ -21,7 +21,10 @@ const recipesRoutes: Routes = [
   imports: [
     RouterModule.forChild(recipesRoutes) // Feature modules uses 'forChild'
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AuthGuard
+  ]
 })
 export class RecipesRoutingModule {
 
