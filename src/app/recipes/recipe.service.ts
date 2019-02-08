@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { RecipeModel } from './recipe.model';
 import { IngredientModel } from '../shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import * as ShoppingListActions from '../shopping-list/ngrx-store/shopping-list.actions';
 
-@Injectable({ providedIn: 'root' })
 export class RecipeService {
   recipesChanged$ = new Subject<RecipeModel[]>();
 
@@ -25,8 +23,7 @@ export class RecipeService {
       ])
   ];
 
-  // Injecting the ShoppingList service into this service so I can call a method from it.
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor() {}
 
   setRecipes(recipes: RecipeModel[]) {
     this.recipes = recipes;
@@ -49,10 +46,6 @@ export class RecipeService {
   updateRecipe(index: number, newRecipe: RecipeModel) {
     this.recipes[index] = newRecipe;
     this.recipesChanged$.next(this.recipes.slice());
-  }
-
-  addIngredientsToShoppingList(ingredients: IngredientModel[]) {
-    this.shoppingListService.addIngredients(ingredients);
   }
 
   deleteRecipe(index: number) {
