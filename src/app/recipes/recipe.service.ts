@@ -2,7 +2,7 @@ import { Subject } from 'rxjs';
 
 import { RecipeModel } from './recipe.model';
 import { IngredientModel } from '../shared/ingredient.model';
-import * as ShoppingListActions from '../shopping-list/ngrx-store/shopping-list.actions';
+import * as ShoppingListActions from '../shopping-list/shopping-list-ngrx-store/shopping-list.actions';
 
 export class RecipeService {
   recipesChanged$ = new Subject<RecipeModel[]>();

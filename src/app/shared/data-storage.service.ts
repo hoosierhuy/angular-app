@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { secrets } from '../../secrets';
@@ -19,18 +19,17 @@ export class DataStorageService {
   ) {}
 
   storeRecipes$() {
-    const token = this.authService.getToken();
     // Put method works well with my persistence service
-    return this.httpClient.put(`${this.apiUrl}?auth=${token}`, this.recipeService.getRecipes() /* if bearer token is required, {
-      observe: 'body',
-      headers: new HttpHeaders().set('Authorization', 'Bearer token123abcyadayada')
-    }*/);
+    const req = new HttpRequest('PUT', this.apiUrl, this.recipeService.getRecipes(), { reportProgress: true });
+
+    return this.httpClient.request(req);
   }
 
   getRecipes$() {
-    const token = this.authService.getToken();
-
-    this.httpClient.get<RecipeModel[]>(`${this.apiUrl}?auth=${token}`)
+    this.httpClient.get<RecipeModel[]>(this.apiUrl, {
+      observe: 'body',
+      responseType: 'json'
+    })
       .pipe(
         map(
           (recipes) => {
