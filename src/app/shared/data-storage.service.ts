@@ -6,7 +6,6 @@ import { secrets } from '../../secrets';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { RecipeModel } from '../recipes/recipe.model';
-import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class DataStorageService {
@@ -14,8 +13,7 @@ export class DataStorageService {
 
   constructor(
     private httpClient: HttpClient,
-    private recipeService: RecipeService,
-    private authService: AuthService
+    private recipeService: RecipeService
   ) {}
 
   storeRecipes$() {
@@ -33,13 +31,12 @@ export class DataStorageService {
       .pipe(
         map(
           (recipes) => {
-            return recipes.map(recipe => {
+            for (const recipe of recipes) {
               if (!recipe['ingredients']) {
-                recipe.ingredients = [];
+                recipe['ingredients'] = [];
               }
-
-              return recipe;
-            });
+            }
+            return recipes;
           }
         )
       )
