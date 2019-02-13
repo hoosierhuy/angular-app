@@ -3,11 +3,10 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as ShoppingListActions from '../../shopping-list/shopping-list-ngrx-store/shopping-list.actions';
 import * as fromRecipeReducers from '../recipes-ngrx-store/recipe.reducers';
-import * as RecipeActions from '../recipes-ngrx-store/recipes.actions';
+import * as RecipeActions from '../recipes-ngrx-store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -19,7 +18,6 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
 
   constructor(
-    private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router,
     private store: Store<fromRecipeReducers.IFeatureState>
