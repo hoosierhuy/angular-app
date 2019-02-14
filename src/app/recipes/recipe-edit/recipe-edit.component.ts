@@ -34,6 +34,18 @@ export class RecipeEditComponent implements OnInit {
       );
   }
 
+  onSubmit() {
+    if (this.editMode) {
+      this.store.dispatch(new RecipeActions.UpdateRecipe({
+        index: this.id,
+        updatedRecipe: this.recipeForm.value
+      }));
+    } else {
+        this.store.dispatch(new RecipeActions.AddRecipe(this.recipeForm.value));
+    }
+    this.onCancel();
+  }
+
   onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup({
@@ -46,34 +58,12 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    if (this.editMode) {
-      this.store.dispatch(
-        new RecipeActions.UpdateRecipe({
-          index: this.id,
-          updatedRecipe: this.recipeForm.value
-        })
-      );
-    } else {
-      this.store.dispatch(
-        new RecipeActions.AddRecipe(this.recipeForm.value)
-      );
-    }
-
-    // When done, navigate away
-    this.onCancel();
-  }
-
-  onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route});
-  }
-
   onDeleteIngredient(index: number) {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
-  getControls() {
-    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   private initForm() {
@@ -84,9 +74,7 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       this.store.select('recipes')
-        .pipe(
-          take(1)
-        )
+        .pipe(take(1))
         .subscribe((recipeState: fromRecipeReducers.IState) => {
           const recipe = recipeState.recipes[this.id];
           recipeName = recipe.name;
@@ -115,4 +103,9 @@ export class RecipeEditComponent implements OnInit {
       'ingredients': recipeIngredients
     });
   }
+
+  getControls() {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+  }
+
 }

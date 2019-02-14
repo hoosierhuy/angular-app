@@ -33,11 +33,11 @@ export class DeleteRecipe implements Action {
   constructor(public payload: number) {}
 }
 
-export class StoreRecipes {
+export class StoreRecipes implements Action {
   readonly type = STORE_RECIPES;
 }
 
-export class FetchRecipes {
+export class FetchRecipes implements Action {
   readonly type = FETCH_RECIPES;
 }
 

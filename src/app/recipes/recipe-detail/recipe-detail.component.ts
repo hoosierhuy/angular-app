@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import * as ShoppingListActions from '../../shopping-list/shopping-list-ngrx-store/shopping-list.actions';
 import * as fromRecipeReducers from '../recipes-ngrx-store/recipe.reducers';
 import * as RecipeActions from '../recipes-ngrx-store/recipe.actions';
@@ -35,16 +35,12 @@ export class RecipeDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.store.select('recipes')
-      .pipe(
-        take(1)
-      )
-      .subscribe(
-        (recipeState: fromRecipeReducers.IState) => {
-          this.store.dispatch(
-            new ShoppingListActions.AddIngredients(recipeState.recipes[this.id].ingredients)
-          );
-        }
-      );
+      .pipe(take(1))
+      .subscribe((recipeState: fromRecipeReducers.IState) => {
+        this.store.dispatch(new ShoppingListActions.AddIngredients(
+          recipeState.recipes[this.id].ingredients)
+        );
+      });
   }
 
   onEditRecipe() {

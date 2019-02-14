@@ -14,7 +14,9 @@
             <li><a routerLink="/signup">Register</a></li>
             <li><a routerLink="/signin">Log In</a></li>
         </ng-template>
-        <li *ngIf="(authState | async).authenticated"><a (click)="onLogout()">Log Out</a></li>
+        <li><a 
+              (click)="onLogout()"
+              *ngIf="(authState | async).authenticated">Log Out</a></li>
         <li class="dropdown" appDropdown *ngIf="(authState | async).authenticated">
           <a class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">

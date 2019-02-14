@@ -3,21 +3,21 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
 
-import * as fromApp from '../app-ngrx-store/app.reducers';
-import * as fromAuth from './auth-ngrx-store/auth.reducers';
+import * as fromAppReducers from '../app-ngrx-store/app.reducers';
+import * as fromAuthReducers from './auth-ngrx-store/auth.reducers';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private store: Store<fromApp.IAppState>) {}
+  constructor(private store: Store<fromAppReducers.IAppState>) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.store.select('auth')
       .pipe(
-        map((authState: fromAuth.IState) => {
+        take(1),
+        map((authState: fromAuthReducers.IState) => {
           return authState.authenticated;
         }),
-        take(1)
       );
   }
 }

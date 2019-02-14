@@ -1,4 +1,6 @@
 # RecipesApp
+![](src/assets/ReadMeImages/new_recipe_screenshot.png)
+
 ![](src/assets/ReadMeImages/recipes_screenshot.png)
 
 ## About
