@@ -1,9 +1,9 @@
 <!-- Reactive Form Approach -->
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
           <button 
             type="submit" 
             class="btn btn-success"
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
           <div class="form-group">
             <label for="name">Name</label>
             <input 
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
           <div class="form-group">
             <label for="imagePath">Image Url</label>
             <input 
@@ -37,12 +37,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
           <img [src]="imagePath.value" class="img-responsive">
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
           <div class="form-group">
             <label for="description">Description</label>
             <textarea 
@@ -55,24 +55,24 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12" formArrayName="ingredients">
+        <div class="col-sm-12" formArrayName="ingredients">
           <div 
             class="row form-array" 
             *ngFor="let ingredientCtrl of getControls(); let i = index"
             [formGroupName]="i">
-            <div class="col-xs-8">
+            <div class="col-sm-8">
                 <input 
                   type="text"
                   class="form-control"
                   formControlName="name">
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <input 
                   type="number"
                   class="form-control"
                   formControlName="amount">
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <button 
                   type="button"
                   class="btn btn-danger"
@@ -81,7 +81,7 @@
           </div>
           <hr>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-sm-12">
               <button
                 type="button"
                 class="btn btn-success" 

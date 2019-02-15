@@ -1,30 +1,31 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <section class="navbar-header">
-      <a routerLink="/" class="navbar-brand">Recipe Book</a>
-    </section>
-
-    <section class="navbar-default">
-      <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
-        <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <section class="container">
+    <a class="navbar-brand" routerLink="/">Recipe Book</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/recipes">Recipes</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
+        </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class=" navbar-nav ">
         <ng-template [ngIf]="!(authState | async).authenticated">
-            <li><a routerLink="/signup">Register</a></li>
-            <li><a routerLink="/signin">Log In</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/signup">Register</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/signin">Log In</a></li>
         </ng-template>
-        <li><a 
+        <li class="nav-item">
+          <a  class="nav-link"
               (click)="onLogout()"
-              *ngIf="(authState | async).authenticated">Log Out</a></li>
+              *ngIf="(authState | async).authenticated">Log Out</a>
+        </li>
         <li class="dropdown" appDropdown *ngIf="(authState | async).authenticated">
-          <a class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+          <a class="nav-link dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a (click)="onSaveData()">Save Data</a></li>
-            <li><a (click)="onFetchData()">Fetch Data</a></li>
+            <li><a  class="dropdown-item" (click)="onSaveData()">Save Data</a></li>
+            <li><a  class="dropdown-item" (click)="onFetchData()">Fetch Data</a></li>
           </ul>
         </li>
       </ul>
     </section>
-  </div>
 </nav>
