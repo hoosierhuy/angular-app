@@ -20,7 +20,7 @@
               *ngIf="(authState | async).authenticated">Log Out</a>
         </li>
         <li class="dropdown" appDropdown *ngIf="(authState | async).authenticated">
-          <a class="nav-link dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+          <a class="nav-link dropdown-toggle" role="button">Manage</a>
           <ul class="dropdown-menu">
             <li><a  class="dropdown-item" (click)="onSaveData()">Save Data</a></li>
             <li><a  class="dropdown-item" (click)="onFetchData()">Fetch Data</a></li>
